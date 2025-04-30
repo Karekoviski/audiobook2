@@ -1,0 +1,837 @@
+/* Root Variables */
+:root {
+    --primary-dark: #121212;
+    --secondary-dark: #181818;
+    --tertiary-dark: #282828;
+    --accent-color: #1DB954;
+    --text-primary: #FFFFFF;
+    --text-secondary: #B3B3B3;
+    --text-tertiary: #727272;
+    --transition: all 0.3s ease;
+}
+
+/* Global Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--primary-dark);
+    color: var(--text-primary);
+    transition: var(--transition);
+    overflow-x: hidden;
+    /* Add padding-bottom to prevent content from being hidden behind the sticky player */
+    padding-bottom: 100px; /* Adjust as needed, start with a base value */
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--secondary-dark);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+    /* Prevent logo text from wrapping */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 60px); /* Adjust based on profile icon size */
+}
+
+.logo:hover {
+    color: var(--accent-color);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 24px;
+    transition: var(--transition);
+    flex-shrink: 0; /* Prevent profile icon from shrinking */
+}
+
+.user-profile:hover {
+    background-color: var(--tertiary-dark);
+}
+
+.profile-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--tertiary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Main Content */
+main {
+    padding: 40px 0;
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, var(--text-primary), var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1s ease;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    animation: fadeIn 1.2s ease;
+}
+
+/* Module Navigation */
+.module-nav {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--tertiary-dark);
+    animation: fadeIn 1.4s ease;
+}
+
+.module-nav::-webkit-scrollbar {
+    height: 6px;
+}
+
+.module-nav::-webkit-scrollbar-track {
+    background: var(--tertiary-dark);
+    border-radius: 10px;
+}
+
+.module-nav::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 10px;
+}
+
+.module-btn {
+    background-color: var(--tertiary-dark);
+    color: var(--text-secondary);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 24px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+.module-btn:hover, .module-btn.active {
+    background-color: var(--accent-color);
+    color: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+/* Audiobook cards */
+.audiobooks-section {
+    margin-bottom: 40px;
+    animation: fadeIn 1.6s ease;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.section-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+}
+
+.carousel-container {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-60%);
+    background-color: rgba(40, 40, 40, 0.7);
+    color: var(--text-primary);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: var(--transition);
+    font-size: 1.5rem;
+}
+
+.carousel-btn:hover {
+    background-color: var(--accent-color);
+}
+
+.carousel-btn.prev {
+    left: -10px;
+}
+
+.carousel-btn.next {
+    right: -10px;
+}
+
+.carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.audiobook-card {
+    background-color: var(--secondary-dark);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    scroll-snap-align: start;
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.audiobook-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    background-color: var(--tertiary-dark);
+}
+
+.audiobook-thumbnail {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--tertiary-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.audiobook-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.play-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.audiobook-card:hover .play-overlay,
+.audiobook-card.playing .play-overlay {
+    opacity: 1;
+}
+
+.play-btn-card {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    transform: scale(0.8);
+    transition: var(--transition);
+}
+
+.audiobook-card:hover .play-btn-card,
+.audiobook-card.playing .play-btn-card {
+    transform: scale(1);
+}
+.play-btn-card i {
+    pointer-events: none;
+}
+
+.audiobook-info {
+    padding: 15px;
+}
+
+.audiobook-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.audiobook-duration {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.audiobook-duration::before {
+    content: "\f017"; /* Font Awesome clock icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 5px;
+    font-size: 0.8em;
+}
+
+/* Player Section */
+.now-playing {
+    background-color: var(--secondary-dark);
+    padding: 15px 20px; /* Reduced padding */
+    border-radius: 12px 12px 0 0; /* Rounded top corners */
+    margin-top: 40px;
+    display: flex;
+    /* Changed to allow wrapping and control alignment */
+    flex-wrap: wrap;
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Space out main sections */
+    gap: 15px; /* Reduced gap */
+    position: sticky;
+    bottom: 0;
+    left: 0; /* Ensure it spans full width */
+    right: 0; /* Ensure it spans full width */
+    z-index: 101;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-out, height 0.3s ease-out; /* Add height transition */
+    /* Removed animation: slideUp */
+    max-height: 300px; /* Set a max-height for expanded state */
+    overflow: hidden; /* Hide overflow when collapsing */
+}
+
+/* Collapsed state for the player */
+.now-playing.collapsed {
+    /* Adjust height for collapsed state */
+    max-height: 70px; /* Example height, adjust as needed */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.now-playing.collapsed .player-controls {
+    display: none; /* Hide controls when collapsed */
+}
+
+/* Toggle Button for Player */
+.player-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 36px;
+    height: 36px;
+    display: none; /* Hidden by default, shown on mobile */
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute; /* Position it */
+    top: 10px;
+    right: 10px;
+    z-index: 102; /* Above other player elements */
+}
+
+.player-toggle-btn:hover {
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Reduced gap */
+    /* Allow info to take available space, but not push controls */
+    flex-grow: 1;
+    min-width: 0; /* Prevent overflow issues */
+}
+
+.player-image-container {
+    width: 50px; /* Smaller image */
+    height: 50px;
+    border-radius: 4px; /* Less rounded */
+    background-color: var(--tertiary-dark);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+#player-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.player-text {
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.player-text h3 {
+    font-size: 1rem; /* Slightly smaller title */
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-text p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    /* Changed to allow wrapping on smaller screens if needed */
+    flex-wrap: wrap;
+    justify-content: center; /* Center controls */
+    gap: 10px; /* Reduced gap */
+    width: 100%; /* Take full width to appear below info on wrap */
+    order: 3; /* Ensure controls are last in flex order */
+}
+
+.control-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reduced gap */
+    order: 2; /* Center buttons */
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem; /* Slightly smaller icons */
+    cursor: pointer;
+    transition: var(--transition);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.control-btn i {
+    pointer-events: none;
+}
+
+.control-btn:hover {
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.control-btn.active {
+    color: var(--accent-color);
+}
+
+.control-btn.play {
+    background-color: var(--accent-color);
+    color: var(--primary-dark);
+    width: 40px; /* Smaller play button */
+    height: 40px;
+    font-size: 1.2rem;
+}
+
+.control-btn.play:hover {
+    transform: scale(1.1);
+    background-color: #1ed760;
+}
+
+/* Make repeat/shuffle less prominent */
+.control-btn#repeat-btn, .control-btn#shuffle-btn {
+    order: 1;
+}
+.control-btn#next-btn, .control-btn#prev-btn {
+    order: 2;
+}
+.control-btn#play-pause-btn {
+    order: 3;
+}
+
+.progress-container {
+    flex-grow: 1; /* Allow progress to take space */
+    min-width: 150px; /* Adjust min-width */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reduced gap */
+    order: 1; /* Place progress bar first in controls row */
+    width: 100%; /* Take full width in its row */
+}
+
+.progress-info {
+    display: flex;
+    font-size: 0.75rem; /* Smaller time */
+    color: var(--text-tertiary);
+    width: 75px; /* Adjust width */
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 4px;
+    background-color: var(--tertiary-dark);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+    position: relative;
+    transition: width 0.1s linear;
+}
+
+.progress-handle {
+    width: 12px;
+    height: 12px;
+    background-color: var(--text-primary);
+    border-radius: 50%;
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    transition: transform 0.1s ease, opacity 0.1s ease;
+    opacity: 0;
+}
+
+.progress-bar:hover .progress-handle,
+.progress-bar:active .progress-handle {
+    transform: translateY(-50%) scale(1.2);
+    opacity: 1;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reduced gap */
+    order: 3; /* Place volume last in controls row */
+}
+
+.volume-bar {
+    width: 70px; /* Shorter volume bar */
+    height: 4px;
+    background-color: var(--tertiary-dark);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.volume-level {
+    height: 100%;
+    width: 70%;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--secondary-dark);
+    padding: 30px 0;
+    text-align: center;
+    margin-top: 60px;
+    /* Removed fixed padding-bottom, handled by body padding */
+}
+
+.footer-content {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-content a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Removed slideUp animation */
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+    body {
+        /* Adjust body padding for mobile player height */
+        padding-bottom: 80px; /* Initial collapsed height */
+    }
+    body.player-expanded {
+         padding-bottom: 200px; /* Adjust for expanded player */
+    }
+
+    header {
+        padding: 15px 0; /* Reduce header padding */
+    }
+
+    .logo {
+        font-size: 1.2rem; /* Smaller logo text */
+        max-width: calc(100% - 50px); /* Adjust max-width */
+    }
+
+    .profile-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+    .user-profile {
+        padding: 6px 10px;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+    }
+
+    .carousel {
+       gap: 15px;
+    }
+    .audiobook-card {
+        width: 160px;
+    }
+
+    .carousel-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+     .carousel-btn.prev {
+        left: 5px;
+    }
+    .carousel-btn.next {
+        right: 5px;
+    }
+
+    /* --- Player Mobile Styles --- */
+    .now-playing {
+        /* Start collapsed on mobile */
+        max-height: 70px;
+        padding: 10px 15px;
+        gap: 10px;
+        border-radius: 0; /* Full width, no top radius needed */
+    }
+
+    .now-playing.expanded {
+        max-height: 300px; /* Allow expansion */
+        /* Restore padding or adjust as needed */
+        padding: 15px;
+    }
+
+    .player-toggle-btn {
+        display: flex; /* Show toggle button on mobile */
+    }
+
+    /* In collapsed state, only show info and play/pause */
+    .now-playing.collapsed .player-info {
+        flex-grow: 1; /* Take most space */
+    }
+    .now-playing.collapsed .player-controls {
+        display: flex; /* Show controls container */
+        width: auto; /* Don't take full width */
+        order: 2; /* Place it after info */
+        flex-wrap: nowrap; /* Prevent wrapping */
+    }
+    .now-playing.collapsed .control-buttons {
+         gap: 5px;
+    }
+    /* Hide everything except play/pause in collapsed controls */
+    .now-playing.collapsed .progress-container,
+    .now-playing.collapsed .volume-control,
+    .now-playing.collapsed #repeat-btn,
+    .now-playing.collapsed #shuffle-btn,
+    .now-playing.collapsed #prev-btn,
+    .now-playing.collapsed #next-btn {
+        display: none;
+    }
+    .now-playing.collapsed .control-btn.play {
+        /* Make play button slightly smaller in collapsed */
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    /* Expanded state mobile styles */
+    .now-playing.expanded .player-info {
+        /* Optional: Adjust layout if needed when expanded */
+        /* Example: maybe make image slightly larger again */
+         width: 100%; /* Take full width */
+         justify-content: center; /* Center items */
+         text-align: center;
+         margin-bottom: 10px;
+    }
+     .now-playing.expanded .player-image-container {
+         width: 60px;
+         height: 60px;
+     }
+
+    .now-playing.expanded .player-controls {
+        display: flex; /* Ensure controls are shown */
+        flex-direction: column; /* Stack controls vertically */
+        align-items: center;
+        gap: 15px; /* Adjust gap */
+        width: 100%;
+        order: 2; /* Below info */
+    }
+
+    .now-playing.expanded .progress-container {
+        display: flex; /* Show progress */
+        width: 100%;
+        order: 1; /* Progress first */
+        flex-direction: column; /* Stack time/bar */
+        gap: 5px;
+    }
+    .now-playing.expanded .progress-info {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .now-playing.expanded .progress-bar {
+        width: 100%;
+    }
+
+    .now-playing.expanded .control-buttons {
+        order: 2; /* Buttons second */
+        gap: 10px;
+    }
+     /* Restore button sizes if needed */
+     .now-playing.expanded .control-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+     .now-playing.expanded .control-btn.play {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .now-playing.expanded .volume-control {
+        display: flex; /* Show volume */
+        width: 80%;
+        justify-content: center;
+        order: 3; /* Volume last */
+        margin-top: 5px;
+    }
+
+    /* Remove footer padding adjustment, handled by body */
+    /* footer { padding-bottom: 250px; } */
+}
+
+@media screen and (max-width: 480px) {
+     .logo {
+        font-size: 1rem; /* Even smaller logo */
+        max-width: calc(100% - 45px);
+     }
+
+     .hero-section h1 {
+        font-size: 1.8rem;
+    }
+
+     .carousel {
+       gap: 10px;
+    }
+     .audiobook-card {
+        width: 140px;
+    }
+
+    /* Further adjustments for smallest screens if needed */
+    .now-playing.expanded .control-buttons {
+        gap: 5px;
+    }
+     .now-playing.expanded .control-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+     .now-playing.expanded .control-btn.play {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+}
+
